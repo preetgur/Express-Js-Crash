@@ -1,12 +1,11 @@
-const express = require('express')
-const path = require('path')
+const express = require('express');
+const path = require('path');
 
-const app = express()
+const app = express();
 
-app.get('/', (req,res) => {
-    // res.send('<h1>Hello world l </h1>')
-    res.sendFile(path.join(__dirname,'public','index.html'));
-})
+// Set static folder : Now you can access any html page using the 'name' of html page with extension
+
+app.use(express.static(path.join(__dirname,'public')));
 
 const PORT = process.env.PORT || 5000
 
