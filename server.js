@@ -3,7 +3,25 @@ const path = require('path');
 
 const app = express();
 
-// Set static folder : Now you can access any html page using the 'name' of html page with extension
+const members = [ 
+    {
+    id :1,
+    name : "Gurpreet Singh",
+    email : "abc@gmail.com",
+    status : "active"
+    },
+    {
+        id :2,
+        name : "Ekbal Singh",
+        email : "ekbal@gmail.com",
+        status : "inactive"
+        }
+]
+app.get('/api/members',(req,res) =>{
+    res.json(members)
+})
+
+// Set static folder : public is the static server.Now you can access any html page using the 'name' of html page with extension
 
 app.use(express.static(path.join(__dirname,'public')));
 
