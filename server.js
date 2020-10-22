@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const members = require('./Members') 
+const moment = require('moment')
 
 const app = express();
 
@@ -8,6 +9,8 @@ const app = express();
 const logger = (req,res,next) => {
     console.log('Hello Middleware');
     console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}`);
+    console.log('Time :',moment().format());
+    
     
     next();
 }
