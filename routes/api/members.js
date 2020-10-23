@@ -47,4 +47,38 @@ router.post('/', (req,res) => {
 })
 
 
+// update Memeber
+router.put('/:id',(req,res)=> {
+
+    // return true or false
+    const found = members.some(val => val.id === parseInt(req.params.id))
+
+    if (found)
+    {
+        members.filter( (member) => {
+        
+            if(member.id === parseInt(req.params.id))
+            {
+                // update the value
+                member.name = req.body.name? req.body.name : member.name 
+                member.email = req.body.email? req.body.email : member.email
+
+                res.json({ msg : 'Member updated',member})
+
+            }
+
+            else
+            {
+                res.status(400).json({msg:`No memeber with id ${req.params.id}`})
+            }
+        })
+
+    }
+    else
+    {
+        res.status(400).json({msg:`No memeber with id ${req.params.id}`})
+    }
+})
+
+
 module.exports = router
