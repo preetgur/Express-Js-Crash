@@ -7,7 +7,9 @@ const app = express();
 // Init middleware
 // app.use(logger)
 
-
+// Body parser middleware
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 
 // Set static folder : public is the static server.Now you can access any html page using the 'name' of html page with extension
 
