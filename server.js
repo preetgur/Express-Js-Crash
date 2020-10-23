@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const logger = require('./middleware/logger')
 const app = express();
-
+const exphbs = require('express-handlebars')
 
 // Init middleware
 // app.use(logger)
@@ -10,6 +10,15 @@ const app = express();
 // Body parser middleware
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+
+// Middelware
+app.engine('handlebars', exphbs({defaultLayout:'main'}));
+app.set('view engine', 'handlebars');
+ 
+// homepage
+app.get('/', function (req, res) {
+    res.render('index');
+});
 
 // Set static folder : public is the static server.Now you can access any html page using the 'name' of html page with extension
 
