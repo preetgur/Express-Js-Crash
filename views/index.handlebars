@@ -1,1 +1,26 @@
-<h1>Example App: Home</h1>
+
+<h1 style="text-align: center;">{{title}}: Homepage</h1>
+
+<div style="text-align: center; border: 1px solid black; border-radius: 2px; display:flex; flex-direction:column; width:30%; margin-right:auto;margin-left:auto;">
+    <h2>Members</h2>
+    <ul style="list-style-type: none;">   
+        {{#each members}}
+        <li>{{this.name}} : {{this.email}}</li>
+        {{/each}}
+    </ul>
+</div>
+
+<form action="/api/members" method="POST" style="    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 20px;
+    height: 100px;
+    justify-content: space-around;">
+
+    <input type="text" name="name" placeholder="Your Name">
+    <input type="email" name="email" placeholder="Your Email">
+    <input type="submit" value="Add New Member">
+</form>
+
+<a href="/api/members">Visit API</a>
