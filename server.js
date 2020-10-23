@@ -4,6 +4,7 @@ const logger = require('./middleware/logger')
 const app = express();
 const exphbs = require('express-handlebars')
 const members = require('./Members')
+
 // Init middleware
 // app.use(logger)
 

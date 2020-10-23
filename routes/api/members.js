@@ -2,6 +2,9 @@ const express = require('express')
 const router = express.Router()
 const uuid = require('uuid')
 const members = require('../../Members')
+const Joi = require('joi')
+
+
 
 // Get all memmbers
 router.get('/',(req,res) =>{
@@ -25,9 +28,28 @@ router.get('/:id',(req,res)=> {
     }
 })
 
+const schema = Joi.object( { 
+    name: Joi.string().alphanum().min(4).max(30).required(),
+    email: Joi.string().min(3).max(30).required()
+
+  })
+
 // Create New Memger
 router.post('/', (req,res) => {
     // res.send(req.body)
+    
+    const validatedResult = Joi.assert(req.body,schema)
+    console.log('status',validatedResult);
+
+    
+    if(validatedResult) 
+    {   
+        // exit the fxn 
+    
+        return res.status(400).json({msg:`Check name and email`})
+    }
+    // Joi.assert()
+    // not excute if there is error
     const newMember = {
         id : uuid.v4(),
         name : req.body.name,
